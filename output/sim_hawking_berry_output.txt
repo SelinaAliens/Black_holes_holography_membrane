@@ -1,0 +1,122 @@
+======================================================================
+  HAWKING TEMPERATURE FROM BERRY PHASE AT THE HORIZON
+======================================================================
+
+  Vacuum Berry phase gamma_0 = -1.025362 rad
+  |gamma_0| = 1.025362 rad
+  |gamma_0|/pi = 0.326383
+
+======================================================================
+  SIM T1: BERRY PHASE AT VARIOUS RADII
+======================================================================
+
+  M = 100, r_s = 50.84, r_p = 7.82
+
+         r      r/r_s       phi(r)    phi/phi_max     gamma(r)    gamma/gamma_0       region
+  --------   --------   ----------   ------------   ----------   --------------   ----------
+      3.91     0.0769       3.9339         1.0000    -1.644644         1.603964         CORE
+      7.82     0.1538       3.9339         1.0000    -1.644644         1.603964         CORE
+      8.82     0.1735       3.4880         0.8866     4.546430        -4.433976      HORIZON
+      9.82     0.1932       3.1328         0.7964     7.217959        -7.039426      HORIZON
+     25.42     0.5000       1.2105         0.3077    -2.099437         2.047508     INTERIOR
+     50.84     1.0000       0.6052         0.1538    -0.898959         0.876724     INTERIOR
+     76.26     1.5000       0.4035         0.1026    -1.345825         1.312537     EXTERIOR
+    101.68     2.0000       0.3026         0.0769    -1.011079         0.986070     EXTERIOR
+    254.20     5.0000       0.1210         0.0308    -0.978345         0.954146     EXTERIOR
+    508.40    10.0000       0.0605         0.0154    -0.845724         0.824805     EXTERIOR
+   1000.00    19.6696       0.0308         0.0078    -1.546251         1.508005     EXTERIOR
+
+======================================================================
+  SIM T2: HAWKING TEMPERATURE FROM BERRY PHASE RATE
+======================================================================
+
+  The Berry phase rate at r_s is the lattice surface gravity:
+    kappa_Berry = |gamma(r_s)| / h
+  The Hawking temperature is:
+    T_H = kappa_Berry / (2*pi)
+
+       M        r_s     gamma(r_s)    kappa_Berry        T_Berry      T_Hawking      ratio
+  ------   --------   ------------   ------------   ------------   ------------   --------
+      10       5.08      -0.898959       0.074913     0.01192282     0.01565253     0.7617
+      20      10.17      -0.898959       0.074913     0.01192282     0.00782627     1.5234
+      50      25.42      -0.898959       0.074913     0.01192282     0.00313051     3.8086
+     100      50.84      -0.898959       0.074913     0.01192282     0.00156525     7.6172
+     200     101.68      -0.898959       0.074913     0.01192282     0.00078263    15.2344
+     500     254.20      -0.898959       0.074913     0.01192282     0.00031305    38.0859
+    1000     508.40      -0.898959       0.074913     0.01192282     0.00015653    76.1718
+
+======================================================================
+  ANALYSIS: BERRY PHASE RATIO AT HORIZON
+======================================================================
+
+  phi(r_s) = PHI_MAX * a_0/2 = 0.605232
+  phi(r_s)/PHI_MAX = a_0/2 = 0.153850
+  This is the SAME ratio as r_p/r_s — the geometric invariant.
+
+  gamma(r_s) = -0.898959
+  gamma_0 = -1.025362
+  gamma(r_s)/gamma_0 = 0.876724
+
+  a_0/2 = 0.153850
+  (1 + a_0/2) = 1.153850
+  gamma_ratio / (1+a_0/2) = 0.759825
+
+======================================================================
+  KEY OBSERVATION: phi(r_s) IS M-INDEPENDENT
+======================================================================
+
+  phi(r_s) = a_0 * M / r_s = a_0 * M / (2*G_eff*M) = a_0/(2*G_eff)
+           = 0.605232
+  This is FIXED. Does not depend on M.
+  Therefore gamma(r_s) does not depend on M either.
+
+  But T_H = 1/(8*pi*G*M) DOES depend on M.
+  So T_Berry = |gamma(r_s)|/(h*2*pi) is M-INDEPENDENT.
+  This seems wrong...
+
+  RESOLUTION: the Berry phase gives the TEMPERATURE SCALE,
+  but the M-dependence comes from the NUMBER OF MODES
+  at the horizon. T_H = T_scale / N_modes(r_s).
+  N_modes ~ r_s^2 ~ M^2. But T_H ~ 1/M, not 1/M^2.
+
+  Better: kappa_Berry should be per unit AREA, not per cycle.
+  kappa per unit area = |gamma(r_s)| / (h * 4*pi*r_s^2)
+
+  M=   10: T_Berry/(4pi*r_s^2) = 0.00003671, T_Berry/(2pi*r_s) = 0.00037324, T_H = 0.01565253, ratio_circ = 0.0238
+  M=  100: T_Berry/(4pi*r_s^2) = 0.00000037, T_Berry/(2pi*r_s) = 0.00003732, T_H = 0.00156525, ratio_circ = 0.0238
+  M= 1000: T_Berry/(4pi*r_s^2) = 0.00000000, T_Berry/(2pi*r_s) = 0.00000373, T_H = 0.00015653, ratio_circ = 0.0238
+
+======================================================================
+  ALTERNATIVE: DIFFERENTIAL BERRY PHASE d(gamma)/dr AT r_s
+======================================================================
+
+  Surface gravity = rate of change of Berry phase WITH RADIUS
+  kappa_Berry = |d(gamma)/dr| at r = r_s
+
+  M=   10: d(gamma)/dr = 0.322583, T_dgamma = 0.05134067, T_H = 0.01565253, ratio = 3.2800
+  M=   50: d(gamma)/dr = 0.886643, T_dgamma = 0.14111360, T_H = 0.00313051, ratio = 45.0769
+  M=  100: d(gamma)/dr = 0.534839, T_dgamma = 0.08512231, T_H = 0.00156525, ratio = 54.3825
+  M=  500: d(gamma)/dr = 0.113046, T_dgamma = 0.01799190, T_H = 0.00031305, ratio = 57.4728
+  M= 1000: d(gamma)/dr = 0.056619, T_dgamma = 0.00901119, T_H = 0.00015653, ratio = 57.5702
+
+======================================================================
+  WHAT COMBINATION GIVES T_H EXACTLY?
+======================================================================
+
+  gamma_H (Berry phase at r_s, M=100) = -1.991806
+  |gamma_H| = 1.991806
+
+  M=   10: |gamma|/(h*2pi*r_s) = 0.00234516, T_H = 0.01565253, ratio = 0.1498
+  M=   50: |gamma|/(h*2pi*r_s) = 0.00046903, T_H = 0.00313051, ratio = 0.1498
+  M=  100: |gamma|/(h*2pi*r_s) = 0.00023452, T_H = 0.00156525, ratio = 0.1498
+  M=  500: |gamma|/(h*2pi*r_s) = 0.00004690, T_H = 0.00031305, ratio = 0.1498
+
+  Test: T_H = Delta * |d(gamma)/dr| / (2*pi)?
+  M=   10: Delta*|dg/dr|/(2pi) = 0.00213919, T_H = 0.01565253, ratio = 0.1367
+  M=   50: Delta*|dg/dr|/(2pi) = 0.00587973, T_H = 0.00313051, ratio = 1.8782
+  M=  100: Delta*|dg/dr|/(2pi) = 0.00354676, T_H = 0.00156525, ratio = 2.2659
+  M=  500: Delta*|dg/dr|/(2pi) = 0.00074966, T_H = 0.00031305, ratio = 2.3947
+  M= 1000: Delta*|dg/dr|/(2pi) = 0.00037547, T_H = 0.00015653, ratio = 2.3988
+
+  Runtime: 1.6 seconds
+======================================================================
